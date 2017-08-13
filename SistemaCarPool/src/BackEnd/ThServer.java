@@ -5,7 +5,6 @@
  */
 package BackEnd;
 
-import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.InetAddress;
 import java.net.MulticastSocket;
@@ -25,15 +24,16 @@ public class ThServer extends Thread {
         {
             socket = new MulticastSocket(4446);
             address = InetAddress.getByName("230.0.0.1");
-        }catch(Exception e)
+        }
+        catch(Exception e)
         {
             System.err.println("error al crear el multicastsocket");
+            e.printStackTrace();
         }
     }
     
     public void Receiving()
     {
-
         byte[] buf = new byte[256];
         try 
         {
@@ -48,7 +48,9 @@ public class ThServer extends Thread {
         }
         catch (Exception e)
         {
+            System.out.println("Error al recibir el paquete");
             e.printStackTrace();
+            System.exit(1);
         }
 	socket.close();
     }

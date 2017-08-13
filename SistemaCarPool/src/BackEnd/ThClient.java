@@ -26,26 +26,31 @@ public class ThClient extends UDPServer
 
     public void run() 
     {
+        Writing();
+    }
+    
+    public void Writing()
+    {
         while(true)
         {
             try 
             {
-               byte[] buf = new byte[256];
+                //get parameters
+                byte[] buf = new byte[256];
                 InetAddress group = InetAddress.getByName("230.0.0.1");
                 BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
+                //create message
                 String message;
-
-                    message = input.readLine();
-                    buf=message.getBytes();
-
-                    DatagramPacket packet = new DatagramPacket(buf, buf.length, group, 4446);
-                    socket.send(packet);
-
+                message = input.readLine();
+                buf=message.getBytes();
+                //send message
+                DatagramPacket packet = new DatagramPacket(buf, buf.length, group, 4446);
+                socket.send(packet);
             } 
             catch (IOException e) 
             {
                 e.printStackTrace();
             }
-        }
+        }        
     }
 }
