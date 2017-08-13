@@ -6,7 +6,6 @@
 package FrontEnd;
 
 import java.net.ServerSocket;
-import java.net.Socket;
 import java.util.ArrayList;
 
 /**
@@ -18,6 +17,7 @@ public class FrontEndServer
     public static ArrayList<String> inputqueue= new ArrayList<>();
     public static ArrayList<String> outputqueue= new ArrayList<>();
     public static int requestN;
+    
     public static void main (String [] args)
     {
         int port = 5000;
