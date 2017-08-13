@@ -8,9 +8,6 @@ package FrontEnd;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
-import java.net.Inet4Address;
-import java.net.InetAddress;
-import java.net.ServerSocket;
 import java.net.Socket;
 import FrontEnd.FrontEndServer;
 import BackEnd.ThServer;
@@ -46,11 +43,6 @@ public class ThreadServer extends Thread
             FrontEndServer.inputqueue.add(FrontEndServer.requestN+"|"+reader.readLine());
             FrontEndServer.requestN++;
 
-            ThClient Client = new ThClient();
-            ThServer Server = new ThServer();
-            
-            Client.start();
-            Server.start();
            
             for(String value:FrontEndServer.outputqueue)
             {
@@ -61,9 +53,7 @@ public class ThreadServer extends Thread
                 {
                     writer.print(content);
                 }
-            }
-            
-            
+            }            
         }
         catch(Exception e)
         {

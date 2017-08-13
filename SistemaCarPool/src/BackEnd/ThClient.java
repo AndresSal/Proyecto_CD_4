@@ -16,12 +16,11 @@ import java.net.InetAddress;
  * @author Andrés
  */
 public class ThClient extends UDPServer
-{
-    private long FIVE_SECONDS = 5000;
-    
-    public ThClient() throws IOException
+{   
+    InetAddress address;
+    public ThClient(InetAddress direccion) throws IOException
     {
-        super("UDPMultiple");
+        address=direccion;
     }
 
     public void run() 
@@ -37,14 +36,13 @@ public class ThClient extends UDPServer
             {
                 //get parameters
                 byte[] buf = new byte[256];
-                InetAddress group = InetAddress.getByName("230.0.0.1");
                 BufferedReader input = new BufferedReader(new InputStreamReader(System.in));
                 //create message
                 String message;
                 message = input.readLine();
                 buf=message.getBytes();
                 //send message
-                DatagramPacket packet = new DatagramPacket(buf, buf.length, group, 4446);
+                DatagramPacket packet = new DatagramPacket(buf, buf.length, address, 5000);
                 socket.send(packet);
             } 
             catch (IOException e) 

@@ -6,8 +6,8 @@
 package BackEnd;
 
 import java.net.DatagramPacket;
+import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.MulticastSocket;
 
 /**
  *
@@ -15,15 +15,15 @@ import java.net.MulticastSocket;
  */
 public class ThServer extends Thread {
 
-    MulticastSocket socket;
+    DatagramSocket socket;
     InetAddress address;
     
-    public ThServer()
+    public ThServer(InetAddress direccion)
     {
         try
         {
-            socket = new MulticastSocket(4446);
-            address = InetAddress.getByName("230.0.0.1");
+            socket = new DatagramSocket(5000);
+            address = direccion;
         }
         catch(Exception e)
         {
@@ -37,7 +37,6 @@ public class ThServer extends Thread {
         byte[] buf = new byte[256];
         try 
         {
-            socket.joinGroup(address);
             while(true)
             {
                 DatagramPacket packet = new DatagramPacket(buf, buf.length);
@@ -59,5 +58,4 @@ public class ThServer extends Thread {
     {
         Receiving();
     }
-
 }
