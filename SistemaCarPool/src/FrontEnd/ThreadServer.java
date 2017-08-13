@@ -43,7 +43,6 @@ public class ThreadServer extends Thread
             FrontEndServer.inputqueue.add(FrontEndServer.requestN+"|"+reader.readLine());
             FrontEndServer.requestN++;
 
-           
             for(String value:FrontEndServer.outputqueue)
             {
                 StringTokenizer token= new StringTokenizer(value, "|");
